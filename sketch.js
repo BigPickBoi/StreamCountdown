@@ -1,3 +1,14 @@
+let col1 = 0;
+let col2 = 0;
+let x1 = 0;
+let streamTime = false;
+let timestr = '';
+let hour = '';
+let min = '';
+let sec = '';
+let day = '';
+
+
 function nextDayAndTime(dayOfWeek, hour, minute) {
     var now = new Date()
     var result = new Date(
@@ -13,9 +24,6 @@ function nextDayAndTime(dayOfWeek, hour, minute) {
     return result.getTime()
 }
 
-
-let streamTime = false;
-
 function nextStream() {
     let monday = nextDayAndTime(1, 18, 30);
     let tuesday = nextDayAndTime(2, 18, 30);
@@ -25,16 +33,8 @@ function nextStream() {
 
     return Math.min(monday, tuesday, friday, sat);
 }
-let timestr = '';
-let hour = '';
-let min = '';
-let sec = '';
-let day = '';
 
-function setup() {
-    createCanvas(windowWidth, windowHeight);
-    background(51);
-
+function countdown() {
     // Set the date we're counting down to
     let countDownDate = nextStream();
 
@@ -67,27 +67,28 @@ function setup() {
             streamTime = true
         }
     }, 1000);
-
-
-    //test = nextDayAndTime(1, 18, 30)
-
-
 }
-let x1 = 0;
+
+function p5Init() {
+    col1 = color(236, 212, 68); //purple
+    col2 = color(110, 37, 148); //yellow
+
+    createCanvas(windowWidth, windowHeight);
+}
 
 function drawBar() {
-    //
+
     push();
     translate(width / 2, height / 2);
     rectMode(CENTER);
     rotate(PI / 4.0);
 
-    let nStr = nextStream(); //static
+    let nStr = nextStream();
     let diffz = nStr - new Date().getTime();
     let maxX = Math.max(windowWidth, windowHeight)
-    x1 = floor(map(diffz, 0, 10000000, 0, maxX + 100));
+    x1 = floor(map(diffz, 0, 10000000, 0, maxX));
 
-    fill(110, 37, 148);
+    fill(col2);
     noStroke();
     rect(0, 0, x1, x1);
 
@@ -95,27 +96,29 @@ function drawBar() {
 }
 
 function drawText() {
-    textSize(50);
+    textSize(75);
     fill(255);
     stroke(0);
-    strokeWeight(3);
+    strokeWeight(8);
     textAlign(CENTER, CENTER);
     if (!streamTime) {
-        text(day, windowWidth / 2, windowHeight / 2 - 100);
-        text(hour, windowWidth / 2, windowHeight / 2 - 45);
-        text(min, windowWidth / 2, windowHeight / 2 + 10);
-        text(sec, windowWidth / 2, windowHeight / 2 + 65);
+        let buff = 75;
+        text(day, windowWidth / 2, windowHeight / 2 - 150);
+        text(hour, windowWidth / 2, windowHeight / 2 - 150 + buff);
+        text(min, windowWidth / 2, windowHeight / 2 - 150 + (buff * 2));
+        text(sec, windowWidth / 2, windowHeight / 2 - 150 + (buff * 3));
     } else
         text("Sup3rQu33n is streaming!", windowWidth / 2, windowHeight / 2);
 }
 
+function setup() {
+    p5Init();
+    countdown();
+}
+
 function draw() {
-    background(236, 212, 68);
+    background(col1);
+
     drawBar();
     drawText();
-
-
-
-
-    //text(timestr, windowWidth / 2 - 100, windowHeight / 2);
 }
