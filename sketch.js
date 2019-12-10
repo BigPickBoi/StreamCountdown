@@ -87,7 +87,7 @@ function drawBar() {
     let maxX = Math.max(windowWidth, windowHeight)
     x1 = floor(map(diffz, 0, 10000000, 0, maxX + 100));
 
-    fill(236, 212, 68);
+    fill(110, 37, 148);
     noStroke();
     rect(0, 0, x1, x1);
 
@@ -110,7 +110,7 @@ function drawText() {
 }
 
 function draw() {
-    background(110, 37, 148);
+    background(236, 212, 68);
     drawBar();
     drawText();
 
