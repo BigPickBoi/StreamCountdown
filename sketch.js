@@ -71,7 +71,8 @@ function countdown() {
 
 function p5Init() {
     col1 = color(236, 212, 68); //purple
-    col2 = color(110, 37, 148); //yellow
+    col2 = color(255, 0, 255); //magenta
+    //col2 = color(110, 37, 148); //yellow
 
     createCanvas(windowWidth, windowHeight);
 }
