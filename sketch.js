@@ -101,12 +101,17 @@ function drawText() {
     stroke(0);
     strokeWeight(8);
     textAlign(CENTER, CENTER);
+    let buff = 80; //Distance between items
+    let offset = 50; // up/down offset
+    text("Sup3rQu33n", windowWidth / 2, windowHeight / 2 - offset - (buff * 3))
+    text("will b3 liv3 in:", windowWidth / 2, windowHeight / 2 - offset - (buff * 2))
+
     if (!streamTime) {
-        let buff = 75;
-        text(day, windowWidth / 2, windowHeight / 2 - 150);
-        text(hour, windowWidth / 2, windowHeight / 2 - 150 + buff);
-        text(min, windowWidth / 2, windowHeight / 2 - 150 + (buff * 2));
-        text(sec, windowWidth / 2, windowHeight / 2 - 150 + (buff * 3));
+
+        text(day, windowWidth / 2, windowHeight / 2 - offset);
+        text(hour, windowWidth / 2, windowHeight / 2 - offset + buff);
+        text(min, windowWidth / 2, windowHeight / 2 - offset + (buff * 2));
+        text(sec, windowWidth / 2, windowHeight / 2 - offset + (buff * 3));
     } else
         text("Sup3rQu33n is streaming!", windowWidth / 2, windowHeight / 2);
 }
